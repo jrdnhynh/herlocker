@@ -1,0 +1,338 @@
+//import
+@import 'variables';
+
+// basic reset
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: $font-family;
+    font-weight: 400;
+    font-style: normal;
+    color: $primary-color;
+    background-color: $background-color;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    main {
+        padding-top: 60px;
+        flex: 1;
+        padding: 90px 0;
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            text-align: center; /* Center the heading */
+            font-size: 2.5em; /* Adjust the font size */
+            margin: 20px 0; /* Add some margin for spacing */
+            color: $primary-color; /* Use your primary color, defined in variables */
+            font-weight: normal; /* Adjust the font weight as needed */
+        }
+    }
+
+    // header and nav
+    header {
+        position: fixed; // Fixed positioning
+        top: 0; // Align to the top of the viewport
+        width: 100%; // Full width
+        z-index: 1000; // Ensure it's above other content
+        background: $nav-background;
+        color: $nav-color;
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+
+            .nav-links {
+                list-style: none;
+                display: flex;
+                font-size: $font-size-small;
+
+                li {
+                    margin-left: 20px;
+                }
+
+                a {
+                    color: $link-color;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    font-weight: 500;
+                    transition: color 0.3s ease;
+
+                    //hover effects
+                    &:hover {
+                        color: $secondary-color;
+                    }
+                }
+            }
+        }
+    }
+
+    // logo styles
+    .logo {
+        display: inline-block;
+        max-width: 200px;
+        width: 100%;
+        height: auto;
+
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    }
+
+    // specific page styles
+    #collection {
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 columns */
+            gap: 15px;
+            padding: 60px 0;
+        }
+        
+        .collection-item {
+            position: relative;
+            cursor: pointer;
+            
+            img {
+                width: 100%;
+                height: 100%;
+                display: block;
+                object-fit: cover;
+                padding: 15px;
+            }
+        
+            .item-info {
+                position: absolute;
+                top: 15px;
+                left: 15px;
+                right: 15px;
+                bottom: 15px;
+                background: rgba(0, 0, 0, 0.7); // black opacity overlay
+                color: white;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                opacity: 0; // Initially hidden
+                transition: opacity 0.3s ease;
+                padding: 15px;
+            }
+        
+            &:hover .item-info {
+                opacity: 1; // show on hover
+            }
+        }
+        
+        .collection-item h3 {
+            margin: 0;
+            font-size: 1.2em; // adjust as needed
+        }
+        
+        .collection-item .description {
+            font-size: 0.9em; 
+            text-align: center;
+        }
+
+        .collection-item .item-info h3 {
+            font-size: 1em; /* initial font size for larger screens */
+            margin-bottom: 0.5em; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .collection-item .item-info p {
+            font-size: 0.8em; 
+        }
+    }
+
+    #about {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    
+        .portfolio {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+    
+        .portfolio-item img {
+            max-width: 100%;
+            max-height: 100vh;
+            object-fit: cover;
+        }
+    
+        p {
+            flex: 1;
+            padding: 15px 0;
+            max-width: 80%;
+            text-align: center; /* Center-align the text */
+            margin: auto; /* Add auto margin for horizontal centering in flex container */
+            /* Additional styles */
+        }
+    }
+
+    #contact {
+        text-align: center;
+        .social-media-links {
+            list-style: none;
+            padding: 0;
+
+            li {
+                margin-bottom: 10px;
+            }
+
+            a {
+                color: $primary-color;
+                text-decoration: none;
+            }
+        }
+        .contact-icons {
+            display: inline-flex;
+            justify-content: center;
+            gap: 50px; /* space between icons */
+            font-size: 150px; /* icon size */
+        }
+    
+        .icon-link {
+            color: inherit; /* Use the current text color */
+            text-decoration: none;
+        }
+    }
+
+    .video-container {
+        max-width: 100%;
+        overflow: hidden;
+    }
+    
+    #landingVideo {
+        width: 100%;
+        height: 83vh;
+        object-fit: cover;
+    }
+
+    // footer Styles
+    footer {
+        position: fixed; // Fixed positioning
+        bottom: 0; // Align to the bottom of the viewport
+        width: 100%; // Full width
+        z-index: 1000; // Ensure it's above other content
+        text-align: center;
+        padding: 1rem;
+        background: $footer-background;
+        color: $footer-color;
+        font-size: $font-size-small;
+    }
+}
+
+//hamburger menu for small screens
+.hamburger {
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+// responsive design
+@media (max-width: 768px) {
+    main {
+        padding: 60px 0 !important;
+        h2 {
+            font-size: 2em;
+        }
+    }
+    
+    .hamburger {
+        display: block;
+    }
+    .nav-links {
+        display: none !important; 
+        flex-direction: column;
+        width: 25%;
+
+        li {
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        a {
+            display: block;
+        }
+    }
+    .nav-links.active {
+        display: flex !important; /* Shown when 'active' class is added */
+    }
+
+    #about .portfolio, #collection .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+
+    .collection-item .item-info h3 {
+        font-size: 0.9em; /* smaller font size for medium screens */
+    }
+
+    .collection-item .item-info p {
+        font-size: 0.7em; /* smaller font size for medium screens */
+    }
+    
+    .gallery {
+        grid-template-columns: repeat(2, 1fr) !important; /* 2 columns on smaller screens */
+    }
+    #about {
+        flex-direction: column;
+
+        p {
+            max-width: 100%;
+        }
+    }
+    #contact {
+        .contact-icons {
+            flex-direction: column;
+            gap: 0 !important;
+        }
+    }
+
+}
+
+@media (max-width: 480px) {
+    main {
+        padding: 60px 0;
+        h2 {
+            font-size: 1.5em;
+        }
+    }
+
+    .collection-item .item-info h3 {
+        font-size: 0.8em; /* smaller font size for small screens */
+    }
+
+    .collection-item .item-info p {
+        font-size: 0.6em; /*smaller font size for small screens */
+    }
+    
+    .gallery {
+        grid-template-columns: repeat(2, 1fr) !important; /* 2 columns on smaller screens */
+    }
+}
